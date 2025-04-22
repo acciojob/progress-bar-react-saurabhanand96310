@@ -1,36 +1,32 @@
-
 import React, { useEffect, useState } from "react";
-import './../styles/App.css';
+import "./../styles/App.css";
 
 const App = () => {
-  const [update,setUpdate]=useState(0)
-  
-  useEffect(()=>{
-    const interval=setInterval(()=>{
-      setUpdate((prev)=>{
-        if(prev>=100){
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 100) {
           clearInterval(interval);
-          return 0;
-        }else{
-         return prev+10
+          return 100; // stop at 100
         }
-      })
-      
-      
-    },1000)
-    return ()=> clearInterval(interval)
-  },[])
-  
+        return prev + 10;
+      });
+    }, 1000); // Every 1 second
+
+    return () => clearInterval(interval); // Cleanup
+  }, []);
 
   return (
     <div>
-        {/* Do not remove the main div */}
-        <div id="barOuter">
-          <div id="barInner" style={{width:`${update}%`}}></div>
-        </div>
-        <p>{update}%</p>
+      {/* Do not remove the main div */}
+      <div id="barOuter">
+        <div id="barInner" style={{ width: `${progress}%` }}></div>
+      </div>
+      <p>{progress}%</p> {/* Cypress expects this format */}
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
