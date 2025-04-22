@@ -28,7 +28,7 @@ const App = () => {
         <div id="barOuter">
           <div id="barInner" style={{width:`${update}%`}}></div>
         </div>
-        <div>{update}</div>
+        <p>{update}</p>
     </div>
   )
 }
